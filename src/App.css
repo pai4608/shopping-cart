@@ -1,0 +1,28 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+}
+
+.sidebar {
+  background-color: aliceblue;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar > ul {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  flex: 1;
+}
+
+.logo {
+  margin: 0;
+  padding: 10px;
+  text-align: center;
+}
+
+.main {
+  background-color: azure;
+}
