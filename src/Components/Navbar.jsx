@@ -20,9 +20,7 @@ function StoreNav({ url, setToFetch, defaultSort, setDefaultSort, cart }) {
         <option value="rating-desc">Highest Rating</option>
         <option value="rating-asc">Lowest Rating</option>
       </select>
-      <button className="cartBtn" onClick={() => console.log(cart)}>
-        Cart
-      </button>
+      <span>${cart.price.toFixed(2)}</span>
     </div>
   );
 }

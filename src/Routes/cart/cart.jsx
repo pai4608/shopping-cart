@@ -1,21 +1,23 @@
 import { useOutletContext } from "react-router-dom";
+import CartTable from "../../Components/CartTable";
+import { Link } from "react-router-dom";
+import "./cart.module.css";
 
 function Cart() {
   const cart = useOutletContext()[5];
+  const setCart = useOutletContext()[6];
   console.log(cart.list);
   return (
     <div className="cart">
-      <h2>this is cart.</h2>
-      {cart.price > 0 && (
-        <ul>
-          {cart.list.map((item) => (
-            <li key={item.title}>
-              {item.title} : {item.quantity}
-            </li>
-          ))}
-        </ul>
+      <h2>Your Cart</h2>
+      {!!cart.price > 0 ? (
+        <CartTable cart={cart} setCart={setCart} />
+      ) : (
+        <h2>
+          Your Cart is empty. Click <Link to={"/store"}>here</Link> to browse
+          mangas.
+        </h2>
       )}
-      <h3>Price : ${cart.price.toFixed(2)}</h3>
     </div>
   );
 }

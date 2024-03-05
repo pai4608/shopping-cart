@@ -1,9 +1,7 @@
 import PropTypes from "prop-types";
-import { useCoverUrl } from "../assets/Mangadex";
 import { addToCart } from "../assets/cartFunction";
 
 function Card({ manga, cart, setCart }) {
-  const mangaId = manga.id;
   const title =
     manga.attributes.title.en || Object.values(manga.attributes.title)[0];
   return (

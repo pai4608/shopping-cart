@@ -19,23 +19,8 @@ const useMangaUrl = (mangaUrl) => {
 
         const updatedMangas = await Promise.all(
           responseData.data.map(async (manga) => {
-            console.log("fetching cover");
-            const coverId = manga.relationships.find(
-              (ele) => ele.type === "cover_art"
-            ).id;
-            const coverUrlResponse = await fetch(
-              `https://api.mangadex.org/cover/${coverId}`,
-              { mode: "cors" }
-            );
-            const coverUrlData = await coverUrlResponse.json();
-            const coverFile = coverUrlData.data.attributes.fileName || null;
-
-            manga.coverUrl = !!coverFile
-              ? `https://uploads.mangadex.org/covers/${manga.id}/${coverFile}.256.jpg`
-              : "cover not found";
-
-            manga.price = getPrice(manga.attributes);
-
+            manga.coverUrl = await fetchCover(manga);
+            manga.price = getPrice(manga);
             return manga;
           })
         );
@@ -54,7 +39,27 @@ const useMangaUrl = (mangaUrl) => {
   return { error, loading, mangas };
 };
 
-function getPrice(att) {
+async function fetchCover(manga) {
+  console.log("fetching cover");
+  const coverId = manga.relationships.find(
+    (ele) => ele.type === "cover_art"
+  ).id;
+  const coverUrlResponse = await fetch(
+    `https://api.mangadex.org/cover/${coverId}`,
+    { mode: "cors" }
+  );
+  const coverUrlData = await coverUrlResponse.json();
+  const coverFile = coverUrlData.data.attributes.fileName || null;
+
+  const coverUrl = !!coverFile
+    ? `https://uploads.mangadex.org/covers/${manga.id}/${coverFile}.256.jpg`
+    : "cover not found";
+
+  return coverUrl;
+}
+
+function getPrice(manga) {
+  const att = { ...manga.attributes };
   let price = 13;
   switch (att.publicationDemographic) {
     case "shoujo":
