@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import "./App.css";
-import { useMangaUrl } from "./Mangadex";
+import { useMangaUrl } from "./assets/Mangadex";
 
 import Sidebar from "./sidebar";
 
 const baseUrl = "https://api.mangadex.org";
 const yuri = "a3c67850-4684-404e-9b7f-c69850ee5da6";
-const limit = 50;
+const limit = 10;
 
 const url = `${baseUrl}//manga?&contentRating[]=safe&contentRating[]=suggestive&includedTags[]=${yuri}&limit=${limit}`;
 
