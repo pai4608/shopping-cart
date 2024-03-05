@@ -1,3 +1,8 @@
+body {
+  margin: 0;
+  overflow: hidden;
+}
+
 .container {
   display: grid;
   grid-template-columns: 1fr 5fr;
@@ -25,4 +30,44 @@
 
 .main {
   background-color: azure;
+  padding: 20px;
+  overflow: auto;
+  height: 95vh;
+}
+
+.card {
+  padding: 10px;
+  width: 200px;
+  height: 500px;
+  background-color: pink;
+  display: grid;
+  grid-template-rows: 8fr 1fr 1fr;
+  border-radius: 15px;
+}
+
+.card img {
+  max-width: 200px;
+  border-radius: 15px;
+}
+
+.card h1 {
+  font-size: 1rem;
+}
+
+.card .priceAndCart {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card .addToCart {
+  height: 40px;
+  width: 40px;
+  text-align: center;
+}
+
+.navbar {
+  display: flex;
+  padding: 10px;
 }

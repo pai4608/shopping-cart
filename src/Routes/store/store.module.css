@@ -1,0 +1,7 @@
+.store {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  justify-items: center;
+  grid-auto-rows: max-content;
+  gap: 30px;
+}
