@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import "./cart.module.css";
 
 function Cart() {
-  const cart = useOutletContext()[5];
-  const setCart = useOutletContext()[6];
+  const cart = useOutletContext()[6];
+  const setCart = useOutletContext()[7];
   console.log(cart.list);
   return (
     <div className="cart">

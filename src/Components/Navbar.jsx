@@ -1,9 +1,17 @@
-function StoreNav({ url, setToFetch, defaultSort, setDefaultSort, cart }) {
+function StoreNav({
+  url,
+  setToFetch,
+  defaultSort,
+  setDefaultSort,
+  cart,
+  setOffset,
+}) {
   function sortChange(e) {
     setDefaultSort(e.target.value);
     const [toSort, method] = e.target.value.split("-");
     const orderStr = `${url}&order[${toSort}]=${method}`;
     setToFetch(orderStr);
+    setOffset(0);
   }
   return (
     <div className="navbar">

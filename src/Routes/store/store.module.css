@@ -5,3 +5,14 @@
   grid-auto-rows: max-content;
   gap: 30px;
 }
+
+.pageTurn {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.pageTurn h4 {
+  margin: 0;
+}

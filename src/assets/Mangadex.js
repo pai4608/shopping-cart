@@ -21,6 +21,9 @@ const useMangaUrl = (mangaUrl) => {
           responseData.data.map(async (manga) => {
             manga.coverUrl = await fetchCover(manga);
             manga.price = getPrice(manga);
+            manga.title =
+              manga.attributes.title.en ||
+              Object.values(manga.attributes.title)[0];
             return manga;
           })
         );
@@ -52,7 +55,10 @@ async function fetchCover(manga) {
   const coverFile = coverUrlData.data.attributes.fileName || null;
 
   const coverUrl = !!coverFile
-    ? `https://uploads.mangadex.org/covers/${manga.id}/${coverFile}.256.jpg`
+    ? {
+        px256: `https://uploads.mangadex.org/covers/${manga.id}/${coverFile}.256.jpg`,
+        px512: `https://uploads.mangadex.org/covers/${manga.id}/${coverFile}.512.jpg`,
+      }
     : "cover not found";
 
   return coverUrl;

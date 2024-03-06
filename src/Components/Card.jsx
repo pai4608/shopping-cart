@@ -1,20 +1,21 @@
 import PropTypes from "prop-types";
 import { addToCart } from "../assets/cartFunction";
+import { Link } from "react-router-dom";
 
 function Card({ manga, cart, setCart }) {
-  const title =
-    manga.attributes.title.en || Object.values(manga.attributes.title)[0];
   return (
     <div className="card">
       <div className="imgContainer">
-        <img src={manga.coverUrl} alt={title} />
+        <img src={manga.coverUrl.px256} alt={manga.title} />
       </div>
-      <h1>{truncateString(title, 40)}</h1>
+      <Link to={`/detail/${manga.id}`}>
+        <h1>{truncateString(manga.title, 40)}</h1>
+      </Link>
       <div className="priceAndCart">
         {!!manga.price ? <p className="priceTag">${manga.price}</p> : ""}
         <button
           className="addToCart"
-          onClick={() => addToCart(cart, setCart, title, +manga.price)}
+          onClick={() => addToCart(cart, setCart, manga.title, +manga.price)}
         >
           +
         </button>
